@@ -20,8 +20,9 @@
 
 ## Tier3
 ### Scripting Entites
-* [First Scripted Weapon](/static/pages/wip.html)
-* [First Scripted Entity](/static/pages/wip.html)
+* [First Scripted Weapon](/static/pages/tutorials/swep.html)
+* [First Scripted Entity](/static/pages/tutorials/sent.html)
+* [First Scripted NPC](/static/pages/tutorials/snpc.html)
 ### Scripting Gamemodes
 * [Creating a Gamemode](/static/pages/wip.html)
 ### Scripting on VGUI
