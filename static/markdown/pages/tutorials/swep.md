@@ -32,7 +32,8 @@ This code is just informational. It shows up in the spawnmenu and the weapon sel
 
 
 ```lua
-SWEP.PrintName			= "Chair Thrower" -- This will be shown in the spawn menu, and in the weapon selection menu
+SWEP.Name				= "Chair Thrower" -- This will be shown in the spawn menu
+SWEP.PrintName			= "Chair Thrower" -- This will be shown in the weapon selection menu
 ```
 
 
@@ -109,78 +110,77 @@ Commented for your learning pleasure
 
 
 ```lua
--- Called when the left mouse button is pressed
+-- Called when the shoot button is pressed
 function SWEP:PrimaryAttack()
-	-- This weapon is 'automatic'. This function call below defines
-	-- the rate of fire. Here we set it to shoot every 0.5 seconds.
-	self.m_flNextPrimaryAttack = gpGlobals.curtime() + 0.5
+   -- This weapon is 'automatic'. This function call below defines
+   -- the rate of fire. Here we set it to shoot every 0.5 seconds.
+   self.m_flNextPrimaryAttack = gpGlobals.curtime() + 0.5
 
-	-- Call 'ThrowChair' on self with this model
-	self:ThrowChair( "models/props/cs_office/Chair_office.mdl" )
+   -- Call 'ThrowChair' on self with this model
+   self:ThrowChair( "models/props_c17/Chair_office01a.mdl" )
 end
  
 
--- Called when the rightmouse button is pressed
+-- Called when the alt button is pressed
 function SWEP:SecondaryAttack()
-	-- Though the secondary fire isn't automatic
-	-- players shouldn't be able to fire too fast
-	self.m_flNextSecondaryAttack = gpGlobals.curtime() + 0.1
+   -- Though the secondary fire isn't automatic
+   -- players shouldn't be able to fire too fast
+   self.m_flNextSecondaryAttack = gpGlobals.curtime() + 0.1
 
-	self:ThrowChair( "models/props_c17/FurnitureChair001a.mdl" )
+   self:ThrowChair( "models/props_c17/FurnitureChair001a.mdl" )
 end
 
 -- A custom function we added. When you call this the player will fire a chair!
 function SWEP:ThrowChair( model_file )
-	local owner = self:GetOwner()
+   local owner = self:GetOwner()
 
-	-- Make sure the weapon is being held before trying to throw a chair
-	if ( ToBaseEntity( owner ) == NULL ) then return end
+   -- Make sure the weapon is being held before trying to throw a chair
+   if ( ToBaseEntity( owner ) == NULL ) then return end
 
-	-- Play the shoot sound we precached earlier!
-	self:EmitSound( self.ShootSound )
+   -- Play the shoot sound we precached earlier!
+   self:EmitSound( self.ShootSound )
 
-	-- Create a prop_physics entity
-	local ent = ToCPhysicsProp( CreateEntityByName( "prop_physics" ) )
+   -- Create a prop_physics entity
+   local ent = ToCPhysicsProp( CreateEntityByName( "prop_physics" ) )
 
-	-- Always make sure that created entities are actually created!
-	if ( ToBaseEntity( ent ) == NULL ) then return end
+   -- Always make sure that created entities are actually created!
+   if ( ToBaseEntity( ent ) == NULL ) then return end
 
-	-- Set the entity's model to the passed in model
-	ent:SetModel( model_file )
+   -- Set the entity's model to the passed in model
+   ent:SetModel( model_file )
 
-	-- This is the same as owner:EyePos() + (self:GetOwner():GetAimVector() * 16)
-	-- but the vector methods prevent duplicitous objects from being created
-	-- which is faster and more memory efficient
-	-- AimVector is not directly modified as it is used again later in the function
-   local aimvec = owner:Weapon_ShootPosition();
+   local aimvec = owner:Weapon_ShootPosition()
 
-	local forward = Vector()
-	local right = Vector()
-	local up = Vector()
+   local forward = Vector()
+   local right = Vector()
+   local up = Vector()
 	
-	owner:EyeVectors( forward, right, up )
+   owner:EyeVectors( forward, right, up )
 
-	-- Set the position to the player's eye position plus 16 units forward.
-	ent:SetAbsOrigin( aimvec + forward * 16  )
+   -- Set the position to the player's eye position plus 16 units forward.
+   ent:SetAbsOrigin( aimvec + forward * 16  )
 
-	-- Set the angles to the player'e eye angles. Then spawn it.
-	ent:SetAbsAngles( owner:GetAbsAngles() )
-	ent:Spawn()
+   -- Set the angles to the player'e eye angles. Then spawn it.
+   ent:SetAbsAngles( owner:GetAbsAngles() )
+   ent:Spawn()
  
-	-- Now get the physics object. Whenever we get a physics object
-	-- we need to test to make sure its valid before using it.
-	-- If it isn't then we'll remove the entity.
-	local phys = ent:VPhysicsGetObject()
-	if ( phys == NULL ) then ent:Remove() return end
+   -- Now get the physics object. Whenever we get a physics object
+   -- we need to test to make sure its valid before using it.
+   -- If it isn't then we'll remove the entity.
+   local phys = ent:VPhysicsGetObject()
+   if ( phys == NULL ) then ent:Remove() return end
  
-	-- Now we apply the force - so the chair actually throws instead 
-	-- of just falling to the ground. You can play with this value here
-	-- to adjust how fast we throw it.
-	-- Now that this is the last use of the aimvector vector we created,
-	-- we can directly modify it instead of creating another copy
-	phys:ApplyForceCenter( ent:GetForward() * 1000 )
- 
-	timer.Simple( 10, function() if ToBaseEntity( ent ) ~= NULL then ent:Remove() end end )
+   -- Now we apply the force - so the chair actually throws instead 
+   -- of just falling to the ground. You can play with this value here
+   -- to adjust how fast we throw it.
+   -- Now that this is the last use of the aimvector vector we created,
+   -- we can directly modify it instead of creating another copy
+   phys:ApplyForceCenter( forward * 100 + up * random.RandomInt( -10, 10) + right * random.RandomInt( -10, 10 ) )
+
+   -- A lot of items can clutter the workspace.
+   -- To fix this we add a 10 second delay to remove the chair after it was spawned.
+   -- ToBaseEntity( ent ) ~= NULL checks if the item still exists before removing it, eliminating errors.
+   timer.Simple( 10, function() if ToBaseEntity( ent ) ~= NULL then ent:Remove() end end )
 end
 ```
 
