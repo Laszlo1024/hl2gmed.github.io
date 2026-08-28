@@ -158,10 +158,10 @@ function SWEP:ThrowChair( model_file )
    owner:EyeVectors( forward, right, up )
 
    -- Set the position to the player's eye position plus 16 units forward.
-   ent:SetAbsOrigin( aimvec + forward * 16  )
+   ent:SetPos( aimvec + forward * 16  )
 
    -- Set the angles to the player'e eye angles. Then spawn it.
-   ent:SetAbsAngles( owner:GetAbsAngles() )
+   ent:SetAngles( owner:GetAngles() )
    ent:Spawn()
  
    -- Now get the physics object. Whenever we get a physics object
