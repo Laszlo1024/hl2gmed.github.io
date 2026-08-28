@@ -124,9 +124,9 @@ function NPC:Think()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
       self:SetAngles( Angle( 0, ang.y, 0 ) )            -- Look at the place
       self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
-		self:WalkMove( self:GetForward() * 19 )               -- Walk forward
+      self:WalkMove( self:GetForward() * 19 )               -- Walk forward
 
-	end
+   end
 
 end
 ```
@@ -236,9 +236,9 @@ function NPC:Think()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
       self:SetAngles( Angle( 0, ang.y, 0 ) )            -- Look at the place
       self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
-		self:WalkMove( self:GetForward() * 19 )               -- Walk forward
+      self:WalkMove( self:GetForward() * 19 )               -- Walk forward
 
-	end
+   end
 
 end
 ```
