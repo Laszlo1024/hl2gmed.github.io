@@ -59,22 +59,22 @@ I've added all sorts of comments so you know exactly what they do.
    ----------------------------------------------------
    function self.HaveEnemy(self)
       -- If our current enemy is valid
-   	if ( self:GetEnemy() ) then
-   		-- If the enemy is too far
+      if ( self:GetEnemy() ) then
+        -- If the enemy is too far
 	   	if ( self:GetPos():DistTo(self:GetEnemy():GetPos()) > self.LoseTargetDist ) then
-	   		-- If the enemy is lost then call FindEnemy() to look for a new one
-	   		-- FindEnemy() will return true if an enemy is found, making this function return true
-	   		return self:FindEnemy()
-   		-- If the enemy is dead( we have to check if its a player before we use IsAlive() )
-   		elseif ( self:GetEnemy():IsPlayer() and !self:GetEnemy():IsAlive() ) then
-   			return self:FindEnemy() -- Return false if the search finds nothing
-   		end	
-   		-- The enemy is neither too far nor too dead so we can return true
-   		return true
-   	else
-   		-- The enemy isn't valid so lets look for a new one
-   		return self:FindEnemy()
-   	end
+            -- If the enemy is lost then call FindEnemy() to look for a new one
+            -- FindEnemy() will return true if an enemy is found, making this function return true
+            return self:FindEnemy()
+         -- If the enemy is dead( we have to check if its a player before we use IsAlive() )
+         elseif ( self:GetEnemy():IsPlayer() and !self:GetEnemy():IsAlive() ) then
+            return self:FindEnemy() -- Return false if the search finds nothing
+         end	
+         -- The enemy is neither too far nor too dead so we can return true
+         return true
+      else
+         -- The enemy isn't valid so lets look for a new one
+         return self:FindEnemy()
+      end
    end
 
    ----------------------------------------------------
@@ -91,7 +91,7 @@ I've added all sorts of comments so you know exactly what they do.
             self:SetEnemy(v)
             return true
          end
-   	end	
+      end	
       -- We found nothing so we will set our enemy as nil (nothing) and return false
       self:SetEnemy(nil)
       return false
@@ -105,7 +105,6 @@ As scary as this code may look to some, it is actually pretty simple:
 * If there is an enemy then play some animations and run at the player.
 * If there are not any enemies, then walk to a random spot.
 Not that bad right? Have a look at the code, I've flooded it with comments so you should know what everything does
-
 ```lua
 ----------------------------------------------------
 -- NPC:Think()
@@ -113,9 +112,9 @@ Not that bad right? Have a look at the code, I've flooded it with comments so yo
 ----------------------------------------------------
 function NPC:Think()
    self:SetNextThink( gpGlobals.curtime() + 1 )
-	-- This function is called each tick, it acts as a giant loop that will run as long as the NPC exists
-	-- Lets use the above mentioned functions to see if we have/can find a enemy
-	if self:HaveEnemy() then
+   -- This function is called each tick, it acts as a giant loop that will run as long as the NPC exists
+   -- Lets use the above mentioned functions to see if we have/can find a enemy
+   if self:HaveEnemy() then
       -- Now that we have a enemy, the code in this block will run
       local ang = Angle()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetEnemy():GetPos())), ang )
