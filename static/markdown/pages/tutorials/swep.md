@@ -1,60 +1,43 @@
-# Introduction
-
+# First Scripted Weapon
+## Introduction
 In this tutorial we will create a weapon that fires chairs.
-
-#  File Layout 
-
-* Open your half-life 2: garry's mod edition folder. 
-* Open the 'addons' folder.
-* Create a folder called 'chairlauncher'
-* Create a folder inside called 'lua'
-* Create a folder inside called 'weapons'
-* Create a folder inside called 'weapon_chairgun'
-* Create a file called 'shared.lua
-
-Your folder structure should be like this:
-
+##  Setup
+### File Location
+The file(s) that make up an Entity should be placed either in an Addon or in a Gamemode.  
+#### Addon Entity Location
 ```
-
-  hl2gmed/addons/chairlauncher/lua/weapons/weapon_chairgun
+addons/
+	├── my-addon-name/
+    │	├── lua/
+    │	│   ├── weapons/
+	│	│   │   └── ...
 ```
-
-
-You have created an addon called **chairlauncher** which contains a weapon called **weapon_chairgun**. Whenever you create a new weapon, most people use the **weapon_** prefix, since most of the default weapons names also start with **weapon_**.
-
-#  The Code 
-
+### File Structure
+```
+  weapons/
+   ├── my-weapon-name/
+   │   ├── cl_init.lua
+   │   ├── init.lua
+   │   └── shared.lua
+```
+Now open `shared.lua` and lets start coding
+## The Code 
 Add these to your weapon after you understand them.
-
-##  Informational 
-
+### Informational 
 This code is just informational. It shows up in the spawnmenu and the weapon selection menu.. so it will help people out if your weapon is complicated to use. You can also put your name in the author field so people know who made it.
-
-
 ```lua
 SWEP.Name				= "Chair Thrower" -- This will be shown in the spawn menu
 SWEP.PrintName			= "Chair Thrower" -- This will be shown in the weapon selection menu
 ```
-
-
-##  Spawn Info 
-
+### Spawn Info 
 Defines whether players can spawn this weapon from the spawnmenu.. and whether only admins can spawn it.
-
-
 ```lua
 SWEP.Spawnable = true
 SWEP.AdminOnly = true
 ```
-
-
-##  Clip Info 
-
+### Clip Info 
 Our weapon doesn't use any ammo or clips, so we just set the clip sizes to -1 and the ammo to "none".
-
 We set primary to be automatic. This means that the player doesn't have to release the mouse button and press it again - it will continually fire.
-
-
 ```lua
 SWEP.Primary.ClipSize		= -1
 SWEP.Primary.DefaultClip	= -1
@@ -66,13 +49,8 @@ SWEP.Secondary.DefaultClip	= -1
 SWEP.Secondary.Automatic	= false
 SWEP.Secondary.Ammo		= "none"
 ```
-
-
-##  More Info 
-
+### More Info 
 These are mostly self explanatory. The higher the weight the more likely you are to switch to it. Slot and SlotPos decide where in your weapon menu the weapon will be.
-
-
 ```lua
 SWEP.Weight			= 5
 SWEP.AutoSwitchTo		= false
@@ -83,32 +61,18 @@ SWEP.SlotPos			= 2
 SWEP.DrawAmmo			= false
 SWEP.DrawCrosshair		= true
 ```
-
-
-##  Models 
-
+### Models 
 The view-model and the world-model to use.
-
-
 ```lua
 SWEP.ViewModel			= "models/weapons/v_pistol.mdl"
 SWEP.WorldModel			= "models/weapons/w_pistol.mdl"
 ```
-
-
-
-##  Sounds 
-
+### Sounds 
 ```lua
 SWEP.ShootSound = "Metal.SawbladeStick"
 ```
-
-
-##  The actual chair throwing code 
-
+### The actual chair throwing code 
 Commented for your learning pleasure
-
-
 ```lua
 -- Called when the shoot button is pressed
 function SWEP:PrimaryAttack()
@@ -183,12 +147,8 @@ function SWEP:ThrowChair( model_file )
    timer.Simple( 10, function() if ToBaseEntity( ent ) ~= NULL then ent:Remove() end end )
 end
 ```
-
-
-# Challenges
-
+## Challenges
 Can you edit the new weapon to:
-
 * Use a different firing sound for left/right click
-* Throw a melon when you press reload? (tip: <page>WEAPON:Reload</page>)
+* Throw a melon when you press reload? (tip: WEAPON:Reload)
 * Throw 3 chairs at a time
