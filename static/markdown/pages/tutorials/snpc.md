@@ -105,14 +105,14 @@ Not that bad right? Have a look at the code, I've flooded it with comments so yo
 -- This is where the mind of our AI is
 ----------------------------------------------------
 function NPC:Think()
+   self:SetNextThink( gpGlobals.curtime() + 1 )
 	-- This function is called each tick, it acts as a giant loop that will run as long as the NPC exists
 	-- Lets use the above mentioned functions to see if we have/can find a enemy
 	if self:HaveEnemy() then
       -- Now that we have a enemy, the code in this block will run
-      local dir = (self:GetPos()) - (self:GetEnemy():GetPos())
       local ang = QAngle()
-      mathlib.VectorAngles( dir, ang )
-      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) ) -- Face our enemy
+      mathlib.VectorAngles( ((self:GetPos()) - (self:GetEnemy():GetPos())), ang )
+      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )    -- Face our enemy
       self:ResetSequence( self:LookupSequence( "charge_start" ) )
       timer.Simple( self:SequenceDuration( self:LookupSequence( "charge_start" ) ), function()
          self:SetSequence( self:LookupSequence( "run_all" ) )
@@ -120,21 +120,13 @@ function NPC:Think()
       end)
    else
       -- Since we can't find an enemy, lets wander
-      local dir = (self:GetPos()) - ( self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400 ) -- Set to a random place within about 400 units
-      local nrm = dir:NormalizeInPlace()
       local ang = QAngle()
-      mathlib.VectorAngles( dir, ang )
-      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )         -- Look at the place
-      if nrm > 10 then
-         self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
-      else
-         self:SetSequence( self:LookupSequence( "idle_all" ) )
-      end
-		self:WalkMove( dir * 19 )                                -- Walk to the placr
+      mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
+      self:SetAbsAngles( QAngle( 0, ang.y, 0 ) )            -- Look at the place
+      self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
+		self:WalkMove( self:GetForward() * 19 )               -- Walk forward
 
 	end
-
-   self:SetNextThink( gpGlobals.curtime() + 1 )
 
 end
 ```
@@ -225,14 +217,14 @@ end
 -- This is where the mind of our AI is
 ----------------------------------------------------
 function NPC:Think()
+   self:SetNextThink( gpGlobals.curtime() + 1 )
 	-- This function is called each tick, it acts as a giant loop that will run as long as the NPC exists
 	-- Lets use the above mentioned functions to see if we have/can find a enemy
 	if self:HaveEnemy() then
       -- Now that we have a enemy, the code in this block will run
-      local dir = (self:GetPos()) - (self:GetEnemy():GetPos())
       local ang = QAngle()
-      mathlib.VectorAngles( dir, ang )
-      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) ) -- Face our enemy
+      mathlib.VectorAngles( ((self:GetPos()) - (self:GetEnemy():GetPos())), ang )
+      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )    -- Face our enemy
       self:ResetSequence( self:LookupSequence( "charge_start" ) )
       timer.Simple( self:SequenceDuration( self:LookupSequence( "charge_start" ) ), function()
          self:SetSequence( self:LookupSequence( "run_all" ) )
@@ -240,21 +232,13 @@ function NPC:Think()
       end)
    else
       -- Since we can't find an enemy, lets wander
-      local dir = (self:GetPos()) - ( self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400 ) -- Set to a random place within about 400 units
-      local nrm = dir:NormalizeInPlace()
       local ang = QAngle()
-      mathlib.VectorAngles( dir, ang )
-      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )         -- Look at the place
-      if nrm > 10 then
-         self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
-      else
-         self:SetSequence( self:LookupSequence( "idle_all" ) )
-      end
-		self:WalkMove( dir * 19 )                                -- Walk to the placr
+      mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
+      self:SetAbsAngles( QAngle( 0, ang.y, 0 ) )            -- Look at the place
+      self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
+		self:WalkMove( self:GetForward() * 19 )               -- Walk forward
 
 	end
-
-   self:SetNextThink( gpGlobals.curtime() + 1 )
 
 end
 ```
