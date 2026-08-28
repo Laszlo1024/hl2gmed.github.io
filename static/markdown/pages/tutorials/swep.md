@@ -3,7 +3,7 @@
 In this tutorial we will create a weapon that fires chairs.
 ##  Setup
 ### File Location
-The file(s) that make up an Entity should be placed either in an Addon or in a Gamemode.  
+The file(s) that make up an Weapon should be placed in an Addon  
 #### Addon Entity Location
 ```
 addons/
