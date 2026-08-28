@@ -1,3 +1,4 @@
+# First Scripted Entity
 ## Introduction
 
 ### What are Entities?
@@ -5,16 +6,6 @@
 Nearly everything you can see and touch in Half-Life 2: Garry's Mod Edition is an Entity.  Any object with a position in the game world is an Entity.  The Player is an Entity, props are Entities, even the the Game World itself is an Entity—albiet a special and unique one.
 
 Entities are able to have custom, developer-defined behaviors that can control things like the way they look and the way they can be interacted with.  Entities are often foundational parts of Gamemodes and Addons
-
-### What are the components of an Entity?
-
-Entities have aspects in all 3 Realms
-
-* **Client** - Drawing/Rendering the Entity.
-* **Server** - Controling the Entity's behavior and interactions.
-* **Shared** - Configuration and properties available to both Server and Client Realms.
-
-Shared isn't really a Realm. It only means that both Client and Server will run the same code that's in a Shared file.
 
 ## Setup
 
@@ -31,22 +22,12 @@ addons/
 	│	│   │   └── ...
 ```
 
-
-#### Gamemode Entity Location
-```
-gamemodes/
-	├── my-gamemode-name/
-    │	├── entities/
-    │	│   ├── entities/
-	│	│   │   └── ...
-```
-
 ### File Structure
 
 Entities can be created either using 
 * 3 separate files that each contain one Realm's code and configuration.
 	* This approach helps with code organization.
-	* The name of the folder containing these files (`my-entity-name` in the example below) will be used as the Entity's <page text="Class Name">Entity:GetClass</page>.
+	* The name of the folder containing these files (`my-entity-name` in the example below) will be used as the Entity's Class Name.
 * The files are:
 	* `cl_init.lua`
 		* The Client Realm
