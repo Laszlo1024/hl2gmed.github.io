@@ -92,7 +92,7 @@ end
 ```
 
 
-##  The "brain" of our bot 
+##  The "brain" of our npc
 As scary as this code may look to some, it is actually pretty simple:
 * Check if we have an enemy, if not it will look for one using the above HaveEnemy() function.
 * If there is an enemy then play some animations and run at the player.
@@ -110,9 +110,9 @@ function NPC:Think()
 	-- Lets use the above mentioned functions to see if we have/can find a enemy
 	if self:HaveEnemy() then
       -- Now that we have a enemy, the code in this block will run
-      local ang = QAngle()
+      local ang = Angle()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetEnemy():GetPos())), ang )
-      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )    -- Face our enemy
+      self:SetAngles( Angle( 0, ang.y - 180, 0 ) )    -- Face our enemy
       self:ResetSequence( self:LookupSequence( "charge_start" ) )
       timer.Simple( self:SequenceDuration( self:LookupSequence( "charge_start" ) ), function()
          self:SetSequence( self:LookupSequence( "run_all" ) )
@@ -120,9 +120,9 @@ function NPC:Think()
       end)
    else
       -- Since we can't find an enemy, lets wander
-      local ang = QAngle()
+      local ang = Angle()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
-      self:SetAbsAngles( QAngle( 0, ang.y, 0 ) )            -- Look at the place
+      self:SetAngles( Angle( 0, ang.y, 0 ) )            -- Look at the place
       self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
 		self:WalkMove( self:GetForward() * 19 )               -- Walk forward
 
@@ -133,7 +133,7 @@ end
 
 
 #  Challenges 
-You now have a basic bot running around the map and that's pretty much it. Here are some things you can try on your own to spice it up:
+You now have a basic npc running around the map and that's pretty much it. Here are some things you can try on your own to spice it up:
 * Search for more then just players
 * Play sounds when its wandering around.
 * Only search for enemies that are in front of it, not all around.
@@ -222,9 +222,9 @@ function NPC:Think()
 	-- Lets use the above mentioned functions to see if we have/can find a enemy
 	if self:HaveEnemy() then
       -- Now that we have a enemy, the code in this block will run
-      local ang = QAngle()
+      local ang = Angle()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetEnemy():GetPos())), ang )
-      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )    -- Face our enemy
+      self:SetAngles( Angle( 0, ang.y - 180, 0 ) )    -- Face our enemy
       self:ResetSequence( self:LookupSequence( "charge_start" ) )
       timer.Simple( self:SequenceDuration( self:LookupSequence( "charge_start" ) ), function()
          self:SetSequence( self:LookupSequence( "run_all" ) )
@@ -232,9 +232,9 @@ function NPC:Think()
       end)
    else
       -- Since we can't find an enemy, lets wander
-      local ang = QAngle()
+      local ang = Angle()
       mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
-      self:SetAbsAngles( QAngle( 0, ang.y, 0 ) )            -- Look at the place
+      self:SetAngles( Angle( 0, ang.y, 0 ) )            -- Look at the place
       self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
 		self:WalkMove( self:GetForward() * 19 )               -- Walk forward
 
