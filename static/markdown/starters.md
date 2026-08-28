@@ -1,8 +1,11 @@
 ## Getting Started
 
+## Basic
 * [Operators & Aliases](/static/pages/starters/operators.html)
 * [Auto Refresh/HotLoading](/static/pages/wip.html)
 * [Global Variables](/static/pages/starters/global.html)
+
+## Lua
 * [Lua Editors](/static/pages/starters/editors.html)
 * [Lua Error Explaination](/static/pages/wip.html)
 * [Lua Folder Structure](/static/pages/wip.html)
