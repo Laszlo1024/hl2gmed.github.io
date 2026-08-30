@@ -41,15 +41,15 @@ This adds some useful functions for enemy related stuff. An NPC isn't complete i
 I've added all sorts of comments so you know exactly what they do.
 
 ```lua
-----------------------------------------------------
+   ----------------------------------------------------
    -- NPC:Get/SetEnemy()
    -- Simple functions used in keeping our enemy saved
    ----------------------------------------------------
-   function self.SetEnemy(self, ent)
+   function self.SetEnemy( self, ent )
       self.Enemy = ent
    end
 
-   function self.GetEnemy(self)
+   function self.GetEnemy( self )
       return self.Enemy
    end
 
@@ -57,11 +57,11 @@ I've added all sorts of comments so you know exactly what they do.
    -- NPC:HaveEnemy()
    -- Returns true if we have an enemy
    ----------------------------------------------------
-   function self.HaveEnemy(self)
+   function self.HaveEnemy( self )
       -- If our current enemy is valid
       if ( self:GetEnemy() ) then
-        -- If the enemy is too far
-	   	if ( self:GetPos():DistTo(self:GetEnemy():GetPos()) > self.LoseTargetDist ) then
+         -- If the enemy is too far
+         if ( self:GetPos():DistTo( self:GetEnemy():GetPos()) > self.LoseTargetDist ) then
             -- If the enemy is lost then call FindEnemy() to look for a new one
             -- FindEnemy() will return true if an enemy is found, making this function return true
             return self:FindEnemy()
@@ -81,19 +81,19 @@ I've added all sorts of comments so you know exactly what they do.
    -- NPC:FindEnemy()
    -- Returns true and sets our enemy if we find one
    ----------------------------------------------------
-   function self.FindEnemy(self)
+   function self.FindEnemy( self )
       -- Search around us for entities
       local _, _ents = util.EntitiesInSphere( 64, self:GetPos(), self.SearchRadius, 0 )
       -- Here we loop through every entity the above search finds and see if it's the one we want
-      for k,v in pairs( _ents ) do
+      for k, v in pairs( _ents ) do
          if v:IsPlayer() then
             -- We found one so lets set it as our enemy and return true
-            self:SetEnemy(v)
+            self:SetEnemy( v )
             return true
          end
-      end	
+   	end	
       -- We found nothing so we will set our enemy as nil (nothing) and return false
-      self:SetEnemy(nil)
+      self:SetEnemy( nil )
       return false
    end
 
@@ -111,28 +111,33 @@ Not that bad right? Have a look at the code, I've flooded it with comments so yo
 -- This is where the mind of our AI is
 ----------------------------------------------------
 function NPC:Think()
+
    self:SetNextThink( gpGlobals.curtime() + 1 )
-   -- This function is called each tick, it acts as a giant loop that will run as long as the NPC exists
-   -- Lets use the above mentioned functions to see if we have/can find a enemy
-   if self:HaveEnemy() then
+	-- This function is called each tick, it acts as a giant loop that will run as long as the NPC exists
+	-- Lets use the above mentioned functions to see if we have/can find a enemy
+	if self:HaveEnemy() then
       -- Now that we have a enemy, the code in this block will run
-      local ang = Angle()
-      mathlib.VectorAngles( ((self:GetPos()) - (self:GetEnemy():GetPos())), ang )
-      self:SetAngles( Angle( 0, ang.y - 180, 0 ) )    -- Face our enemy
-      self:ResetSequence( self:LookupSequence( "charge_start" ) )
+      local dir = ( self:GetPos() ) - ( self:GetEnemy():GetPos() )
+      local ang = QAngle()
+      mathlib.VectorAngles( dir, ang )
+      self:SetAbsAngles( QAngle( 0, ang.y - 180, 0 ) )            -- Face our enemy
+      self:ResetSequence( self:LookupSequence( "charge_start" ) ) -- Lets make a pose to show we found a enemy
       timer.Simple( self:SequenceDuration( self:LookupSequence( "charge_start" ) ), function()
-         self:SetSequence( self:LookupSequence( "run_all" ) )
-         self:WalkMove( self:GetForward() * 32 )
+         self:SetSequence( self:LookupSequence( "run_all" ) ) -- Set the animation
+         local nrm = dir:NormalizeInPlace()
+         self:WalkMove( -dir * 32 )                           -- Chase the player
       end)
    else
       -- Since we can't find an enemy, lets wander
-      local ang = Angle()
-      mathlib.VectorAngles( ((self:GetPos()) - (self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400)), ang )
-      self:SetAngles( Angle( 0, ang.y, 0 ) )            -- Look at the place
+      local dir = ( self:GetPos() ) - ( self:GetPos() + Vector( random.RandomInt( -1, 1 ), random.RandomInt( -1, 1 ), 0 ) * 400 )
+      local ang = QAngle()
+      mathlib.VectorAngles( dir, ang )
+      self:SetAbsAngles( QAngle( 0, ang.y, 0 ) )
       self:SetSequence( self:LookupSequence( "walk_all" ) ) -- Walk animation
-      self:WalkMove( self:GetForward() * 19 )               -- Walk forward
+      local nrm = dir:NormalizeInPlace()
+		self:WalkMove( dir * 19 )                             -- Walk to a random place within about 400 units
 
-   end
+	end
 
 end
 ```
