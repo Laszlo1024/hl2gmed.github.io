@@ -1,7 +1,5 @@
 # Operators & Aliases
-
 Half-Life 2: Garry's Mod Edition adds a custom operator and aliases various native Lua operators.
-
 | Half-Life 2: Garry's Mod Editon <br/> Operator | Note |
 |:---:|:----------------------------|
 | `continue` | Consider using `goto` for `repeat-until` loops instead.
@@ -14,5 +12,4 @@ Half-Life 2: Garry's Mod Edition adds a custom operator and aliases various nati
 | `~=` | `!=`
 | `--[[ ]]` | `/* */`
 | `--` | `//`
-
-<div class="note"><b>⚠️WARNING:</b><br><i>If you want to keep your code compatible with other Lua environments,  it's recommended to **avoid** using these **custom operators** & **aliases**</i></div>
+<div class="warning"><b>⚠️WARNING:</b><br>If you want to keep your code compatible with other Lua environments,  it's recommended to avoid using these custom operators & aliases</div>
