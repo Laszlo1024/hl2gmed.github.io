@@ -1,9 +1,7 @@
 # Global Variables
-
 <br/>
 
 ## Global Tables
-
 There are various global tables containing the active game  
 state some of which are only available in specific scopes.
 
@@ -16,13 +14,8 @@ state some of which are only available in specific scopes.
 | `_G` | All globals, including itself | Available anywhere
 | `_MODULES` | List of all `/modules/` | Available anywhere 
 
-<br/>
-
-
 # NON CONSTANTS
-
 ## CLIENT
 This is true whenever the current script is executed on the client. ( client and menu states ) See States. Always present.
-
 ## SERVER
 This is true whenever the current script is executed on the server state. See States. Always present.
