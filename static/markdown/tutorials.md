@@ -1,5 +1,5 @@
 # Tutorials
-<div class="note"><b>💡NOTE:</b><br><i>Tutorials are still WIP.</i></div>
+<div class="note"><b>💡NOTE:</b><br>Tutorials are still WIP.</div>
 
 ## Tier1
 * [Creating & Running](/static/pages/wip.html)
@@ -12,8 +12,8 @@
 * [Hooks](/static/pages/wip.html)
 
 ## Tier2
-* [ConVars](/static/pages/wip.html)
-* [ConCommands](/static/pages/wip.html)
+* [Console Commands](/static/pages/tutorials/concommands.html)
+* [Console Variables](/static/pages/wip.html)
 * [Using KeyValues](/static/pages/wip.html)
 * [JSON](/static/pages/wip.html)
 * [Filesystem](/static/pages/wip.html)
