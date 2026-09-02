@@ -1,7 +1,7 @@
 # Tutorials
-<div class="note"><b>💡NOTE:</b><br>Tutorials are still WIP.</div>
+<div class="note"><b>💡NOTE:</b><br><i>Tutorials are still WIP.</i></div>
 
-## Tier1
+## Tier l
 * [Creating & Running](/static/pages/wip.html)
 * [Variables](/static/pages/wip.html)
 * [If, Then, Else](/static/pages/wip.html)
@@ -11,14 +11,14 @@
 * [Realms](/static/pages/wip.html)
 * [Hooks](/static/pages/wip.html)
 
-## Tier2
+## Tier 2
 * [Console Commands](/static/pages/tutorials/concommands.html)
 * [Console Variables](/static/pages/wip.html)
 * [Using KeyValues](/static/pages/wip.html)
 * [JSON](/static/pages/wip.html)
 * [Filesystem](/static/pages/wip.html)
 
-## Tier3
+## Tier 3
 ### Scripting Entites
 * [First Scripted Weapon](/static/pages/tutorials/swep.html)
 * [First Scripted Entity](/static/pages/tutorials/sent.html)
