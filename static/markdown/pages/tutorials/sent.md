@@ -1,5 +1,5 @@
 # First Scripted Entity
-<div class="note"><b>💡NOTE:</b><br><i>This tutorial may be changed</i></div>
+<div class="note"><b>💡NOTE:</b><br><i>This tutorial doesn't seem to show anything helpful, don't worry this will be changed!</i></div>
 
 ## Introduction
 Nearly everything you can see and touch in Half-Life 2: Garry's Mod Edition is an Entity.  Any object with a position in the game world is an Entity.  The Player is an Entity, props are Entities, even the the Game World itself is an Entity—albiet a special and unique one.
