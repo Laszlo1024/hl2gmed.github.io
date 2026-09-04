@@ -2,8 +2,8 @@
 
 This list shows the order of loading Lua files in Half-Life 2 Garry's Mod Edition.
 
-<note>GMod combines all scripts into a virtual filesystem (one folder). `addon/myaddon/lua/entities/` and `gamemodes/base/gamemode/entities/entities/` will be merged with `lua/entities/`, so therefore the same path and name will override and/or conflict.</note>
-<note>Autorun lua files are sorted alphabetically(A-Z) on all OSes before being executed</note>
+<div class="note"><b>💡NOTE:</b><br><i>HL2GMed combines all scripts into a virtual filesystem (one folder). addon/myaddon/lua/entities/ and gamemodes/base/gamemode/entities/entities/ will be merged with lua/entities/, so therefore the same path and name will override and/or conflict.</i></div>
+<div class="note"><b>💡NOTE:</b><br><i>Autorun lua files are sorted alphabetically(A-Z) on all OSes before being executed</i></div>
 
 # Client loading order
 
