@@ -1,4 +1,4 @@
-# Tutorials
+# Tutorials<hr>
 <div class="note"><b>💡NOTE:</b><br><i>Tutorials are still WIP.</i></div>
 
 ## Tier l
