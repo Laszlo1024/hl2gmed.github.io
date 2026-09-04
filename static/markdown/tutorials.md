@@ -2,7 +2,7 @@
 <div class="note"><b>💡NOTE:</b><br><i>Tutorials are still WIP.</i></div>
 
 ## Tier l
-* [Creating & Running](/static/pages/wip.html)
+* [Creating & Running](/static/pages/tutorials/cr.html)
 * [Variables](/static/pages/wip.html)
 * [If, Then, Else](/static/pages/wip.html)
 * [Functions](/static/pages/wip.html)
