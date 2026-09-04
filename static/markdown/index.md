@@ -1,6 +1,6 @@
 # Welcome!<hr>
 
-Welcome to the Half-Life 2: Garry's Mod Edition Wiki!
+Welcome to the Half-Life 2 Garry's Mod Edition Wiki!
 
 Here you will find tutorials, resources and documentation about HL2GMed and its [Lua API](#learning).
 
@@ -29,7 +29,7 @@ The wiki is a public resource and maintained by [Dim1xs](https://github.com/Dim1
 # Learning<hr>
 
 ## Pure Lua Resources
-* [Official Reference Manual (5.1)](http://www.lua.org/manual/5.1/manual.html) - This is the version Garry's Mod utilizes.
+* [Official Reference Manual (5.1)](http://www.lua.org/manual/5.1/manual.html) - This is the version Half-Life 2 Garry's Mod Edition utilizes.
 * [Programming in Lua Book](http://www.lua.org/pil/) 
 * [Lua-Users.org Lua Tutorial](http://lua-users.org/wiki/LuaTutorial) 
 * [Programming Gems - Book Sample](http://www.lua.org/gems/sample.pdf)
